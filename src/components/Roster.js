@@ -13,6 +13,7 @@ class Roster extends Component {
 	formSubmitted(event) {
 		event.preventDefault();
 		this.setState({
+			playerClear: '',
 			players: [...this.state.players, {
 				name: this.state.newPlayer,
 			}]
@@ -34,7 +35,7 @@ class Roster extends Component {
 
 					<label htmlFor="newRoster">Add Player to Roster</label>
 
-					<input onChange={this.newPlayerAdded.bind(this)} id="newRoster" name="newRoster" />
+					<input onChange={this.newPlayerAdded.bind(this)} id="newRoster" name="newRoster" value={this.state.playerClear} />
 
 					<button type="submit">Add Player</button>
 
@@ -42,7 +43,7 @@ class Roster extends Component {
 
 				<ul>
 					{this.state.players.map(players =>{
-						return <li>{players.name}</li>
+						return <li key={players.name}>{players.name}</li>
 						}
 					)}
 				</ul>

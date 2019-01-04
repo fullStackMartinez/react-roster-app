@@ -13,6 +13,7 @@ class Roster extends Component {
 	formSubmitted(event) {
 		event.preventDefault();
 		this.setState({
+			drillClear: '',
 			drills: [...this.state.drills, {
 				name: this.state.newDrill,
 				completed: false
@@ -35,7 +36,7 @@ class Roster extends Component {
 
 					<label htmlFor="newDrill">Add A Drill</label>
 
-					<input onChange={this.newDrillAdded.bind(this)} id="newDrill" name="newDrill" />
+					<input onChange={this.newDrillAdded.bind(this)} id="newDrill" name="newDrill" value={this.state.drillClear}/>
 
 					<button type="submit">Add Drill</button>
 
@@ -43,7 +44,7 @@ class Roster extends Component {
 
 				<ul>
 					{this.state.drills.map(drills =>{
-							return <li>{drills.name}</li>
+							return <li key={drills.name}>{drills.name}</li>
 						}
 					)}
 				</ul>
