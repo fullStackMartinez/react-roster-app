@@ -4,25 +4,26 @@ class Roster extends Component {
 	constructor() {
 		super();
 		this.state = {
-			title: 'Player Roster',
-			newPlayer: '',
-			players: []
+			title: 'Daily Drills',
+			newDrill: '',
+			drills: []
 		}
 	}
 //Define function that will fire when we click our button
 	formSubmitted(event) {
 		event.preventDefault();
 		this.setState({
-			players: [...this.state.players, {
-				name: this.state.newPlayer,
+			drills: [...this.state.drills, {
+				name: this.state.newDrill,
+				completed: false
 			}]
 		})
 	}
 
 	//Define listener to our input as a function
-	newPlayerAdded(event) {
+	newDrillAdded(event) {
 		this.setState({
-			newPlayer: event.target.value
+			newDrill: event.target.value
 		})
 	}
 	render() {
@@ -32,17 +33,17 @@ class Roster extends Component {
 
 				<form onSubmit={this.formSubmitted.bind(this)}>
 
-					<label htmlFor="newRoster">Add Player to Roster</label>
+					<label htmlFor="newDrill">Add A Drill</label>
 
-					<input onChange={this.newPlayerAdded.bind(this)} id="newRoster" name="newRoster" />
+					<input onChange={this.newDrillAdded.bind(this)} id="newDrill" name="newDrill" />
 
-					<button type="submit">Add Player</button>
+					<button type="submit">Add Drill</button>
 
 				</form>
 
 				<ul>
-					{this.state.players.map(players =>{
-						return <li>{players.name}</li>
+					{this.state.drills.map(drills =>{
+							return <li>{drills.name}</li>
 						}
 					)}
 				</ul>
